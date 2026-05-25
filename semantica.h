@@ -7,10 +7,10 @@
 
 // tipos
 
-#define ERR   0
-#define INT   1
-#define FLT   2
-#define NULA  3
+#define TIPO_ERR  0
+#define TIPO_INT  1
+#define TIPO_FLT  2
+#define TIPO_NULA 3
 
 const char* tipoToString(int tipo);
 
@@ -120,10 +120,8 @@ typedef struct {
 
 void initStack(StackIDs *s);
 
-void push(StackIDs *s,
-          char *nombre);
-
-char* pop(StackIDs *s);
+void pushID(StackIDs *s, char *nombre);
+char* popID(StackIDs *s);
 
 int stackVacio(StackIDs *s);
 

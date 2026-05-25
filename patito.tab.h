@@ -39,55 +39,62 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     PROGRAM = 258,
-     VARS = 259,
-     INICIO = 260,
-     FIN = 261,
-     SI = 262,
-     SINO = 263,
-     MIENTRAS = 264,
-     HAZ = 265,
-     ESCRIBE = 266,
-     ENTERO = 267,
-     FLOTANTE = 268,
-     NULA = 269,
-     CTE_ENT = 270,
-     CTE_FLT = 271,
-     ID = 272,
-     LETRERO = 273,
+     ID = 258,
+     CTE_ENT = 259,
+     CTE_FLT = 260,
+     LETRERO = 261,
+     PROGRAM = 262,
+     VARS = 263,
+     INICIO = 264,
+     FIN = 265,
+     SI = 266,
+     SINO = 267,
+     MIENTRAS = 268,
+     HAZ = 269,
+     ESCRIBE = 270,
+     NULA = 271,
+     ENTERO = 272,
+     FLOTANTE = 273,
      OPEQ = 274,
      OPNEQ = 275,
      OPGT = 276,
-     OPLT = 277
+     OPLT = 277,
+     UMINUS = 278
    };
 #endif
 /* Tokens.  */
-#define PROGRAM 258
-#define VARS 259
-#define INICIO 260
-#define FIN 261
-#define SI 262
-#define SINO 263
-#define MIENTRAS 264
-#define HAZ 265
-#define ESCRIBE 266
-#define ENTERO 267
-#define FLOTANTE 268
-#define NULA 269
-#define CTE_ENT 270
-#define CTE_FLT 271
-#define ID 272
-#define LETRERO 273
+#define ID 258
+#define CTE_ENT 259
+#define CTE_FLT 260
+#define LETRERO 261
+#define PROGRAM 262
+#define VARS 263
+#define INICIO 264
+#define FIN 265
+#define SI 266
+#define SINO 267
+#define MIENTRAS 268
+#define HAZ 269
+#define ESCRIBE 270
+#define NULA 271
+#define ENTERO 272
+#define FLOTANTE 273
 #define OPEQ 274
 #define OPNEQ 275
 #define OPGT 276
 #define OPLT 277
+#define UMINUS 278
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+#line 20 "patito.y"
+{ char sval[64]; int tval; }
+/* Line 1529 of yacc.c.  */
+#line 97 "patito.tab.h"
+	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 # define YYSTYPE_IS_TRIVIAL 1

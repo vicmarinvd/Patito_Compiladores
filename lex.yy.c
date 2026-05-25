@@ -534,7 +534,7 @@ char *yytext;
 #include <stdio.h>
 
 extern int yylineno;
-int errlexicos = 0;
+int errores_lexicos = 0;
 #line 538 "lex.yy.c"
 /* Digitos y letras */
 /* Constantes, id y string */
@@ -888,22 +888,22 @@ YY_RULE_SETUP
 case 13:
 YY_RULE_SETUP
 #line 38 "patito.l"
-{ return CTE_FLT; }
+{ strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return CTE_FLT; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 39 "patito.l"
-{ return CTE_ENT; }
+{ strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return CTE_ENT; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 41 "patito.l"
-{ return ID; }
+{ strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return ID; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 43 "patito.l"
-{ return LETRERO; }
+{ strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return LETRERO; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
@@ -998,7 +998,7 @@ YY_RULE_SETUP
   fprintf(stderr,
     "[Error Lexico] Linea %d: caracter no reconocido '%s'\n",
     yylineno, yytext);
-  errlexicos++;
+  errores_lexicos++;
 }
 	YY_BREAK
 case 35:

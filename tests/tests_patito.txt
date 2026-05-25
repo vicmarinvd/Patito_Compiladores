@@ -1,9 +1,9 @@
 programa tests_patito;
 
 vars
-    a, b, c, resultado, i, n, suma, x, opcion, res : entero;
-    pi, radio, y : flotante;
-    _valor, _otro : entero;
+    a, b, c, i, n, suma, x, opcion, res : entero;
+    pi, radio, y, resultado, _valor : flotante;
+    _otro : entero;
 
 nula saludar() {
     {

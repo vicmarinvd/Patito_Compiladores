@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 extern int yylineno;
-int errlexicos = 0;
+int errores_lexicos = 0;
 %}
 
 %option yylineno
@@ -35,12 +35,12 @@ BLANCOS     [ \t\n\r]+
 "flotante"   { return FLOTANTE; }
 "nula"       { return NULA;     }
 
-{CTE_FLT}   { return CTE_FLT; }
-{CTE_ENT}   { return CTE_ENT; }
+{CTE_FLT} { strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return CTE_FLT; }
+{CTE_ENT} { strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return CTE_ENT; }
 
-{ID}        { return ID; }
+{ID}      { strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return ID; }
 
-{LETRERO}   { return LETRERO; }
+{LETRERO} { strncpy(yylval.sval, yytext, 63); yylval.sval[63] = '\0'; return LETRERO; }
 
 "=="        { return OPEQ;  }
 "!="        { return OPNEQ; }
@@ -65,7 +65,7 @@ BLANCOS     [ \t\n\r]+
   fprintf(stderr,
     "[Error Lexico] Linea %d: caracter no reconocido '%s'\n",
     yylineno, yytext);
-  errlexicos++;
+  errores_lexicos++;
 }
 
 %%

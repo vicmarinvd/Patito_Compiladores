@@ -19,13 +19,13 @@ const char* tipoToString(int tipo) { // convertir el tipo a string para imprimir
 
     switch(tipo) {
 
-        case INT:
+        case TIPO_INT:
             return "entero";
 
-        case FLT:
+        case TIPO_FLT:
             return "flotante";
 
-        case NULA:
+        case TIPO_NULA:
             return "nula";
 
         default:
@@ -43,7 +43,7 @@ void initCubo() {
 
             for(int k = 0; k < NUM_OPS; k++) {
 
-                cubo[i][j][k] = ERR; // por defecto, todas las combinaciones son error
+                cubo[i][j][k] = TIPO_ERR; // por defecto, todas las combinaciones son error
             }
         }
     }
@@ -51,56 +51,56 @@ void initCubo() {
     // definir las combinaciones válidas en el cubo semántico
     // suma 
 
-    cubo[INT][INT][OP_ADD] = INT;
-    cubo[INT][FLT][OP_ADD] = FLT;
-    cubo[FLT][INT][OP_ADD] = FLT;
-    cubo[FLT][FLT][OP_ADD] = FLT;
+    cubo[TIPO_INT][TIPO_INT][OP_ADD] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_FLT][OP_ADD] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_INT][OP_ADD] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_ADD] = TIPO_FLT;
 
     // resta 
 
-    cubo[INT][INT][OP_SUB] = INT;
-    cubo[INT][FLT][OP_SUB] = FLT;
-    cubo[FLT][INT][OP_SUB] = FLT;
-    cubo[FLT][FLT][OP_SUB] = FLT;
+    cubo[TIPO_INT][TIPO_INT][OP_SUB] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_FLT][OP_SUB] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_INT][OP_SUB] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_SUB] = TIPO_FLT;
 
     // multiplicacion 
 
-    cubo[INT][INT][OP_MUL] = INT;
-    cubo[INT][FLT][OP_MUL] = FLT;
-    cubo[FLT][INT][OP_MUL] = FLT;
-    cubo[FLT][FLT][OP_MUL] = FLT;
+    cubo[TIPO_INT][TIPO_INT][OP_MUL] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_FLT][OP_MUL] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_INT][OP_MUL] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_MUL] = TIPO_FLT;
 
     // division
 
-    cubo[INT][INT][OP_DIV] = FLT;
-    cubo[INT][FLT][OP_DIV] = FLT;
-    cubo[FLT][INT][OP_DIV] = FLT;
-    cubo[FLT][FLT][OP_DIV] = FLT;
+    cubo[TIPO_INT][TIPO_INT][OP_DIV] = TIPO_FLT;
+    cubo[TIPO_INT][TIPO_FLT][OP_DIV] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_INT][OP_DIV] = TIPO_FLT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_DIV] = TIPO_FLT;
 
     // relacionales 
-    cubo[INT][INT][OP_GT] = INT;
-    cubo[INT][INT][OP_LT] = INT;
-    cubo[INT][INT][OP_EQ] = INT;
-    cubo[INT][INT][OP_NEQ] = INT;
+    cubo[TIPO_INT][TIPO_INT][OP_GT] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_INT][OP_LT] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_INT][OP_EQ] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_INT][OP_NEQ] = TIPO_INT;
 
-    cubo[FLT][FLT][OP_GT] = INT;
-    cubo[FLT][FLT][OP_LT] = INT;
-    cubo[FLT][FLT][OP_EQ] = INT;
-    cubo[FLT][FLT][OP_NEQ] = INT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_GT] = TIPO_INT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_LT] = TIPO_INT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_EQ] = TIPO_INT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_NEQ] = TIPO_INT;
 
-    cubo[INT][FLT][OP_GT] = INT;
-    cubo[INT][FLT][OP_LT] = INT;
+    cubo[TIPO_INT][TIPO_FLT][OP_GT] = TIPO_INT;
+    cubo[TIPO_INT][TIPO_FLT][OP_LT] = TIPO_INT;
 
-    cubo[FLT][INT][OP_GT] = INT;
-    cubo[FLT][INT][OP_LT] = INT;
+    cubo[TIPO_FLT][TIPO_INT][OP_GT] = TIPO_INT;
+    cubo[TIPO_FLT][TIPO_INT][OP_LT] = TIPO_INT;
 
     // asignacion
 
-    cubo[INT][INT][OP_ASG] = INT;
+    cubo[TIPO_INT][TIPO_INT][OP_ASG] = TIPO_INT;
 
-    cubo[FLT][FLT][OP_ASG] = FLT;
+    cubo[TIPO_FLT][TIPO_FLT][OP_ASG] = TIPO_FLT;
 
-    cubo[FLT][INT][OP_ASG] = FLT;
+    cubo[TIPO_FLT][TIPO_INT][OP_ASG] = TIPO_FLT;
 }
 
 // consultar el cubo semantico para verificar si la operacion es valida y obtener el tipo resultante
@@ -301,7 +301,7 @@ void initStack(StackIDs *s) {
     s->top = -1;
 }
 
-void push(StackIDs *s,
+void pushID(StackIDs *s,
           char *nombre) {
 
     s->top++;
@@ -309,7 +309,7 @@ void push(StackIDs *s,
     strcpy(s->datos[s->top], nombre);
 }
 
-char* pop(StackIDs *s) {
+char* popID(StackIDs *s) {
 
     return s->datos[s->top--];
 }
